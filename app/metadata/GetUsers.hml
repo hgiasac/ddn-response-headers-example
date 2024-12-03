@@ -1,0 +1,31 @@
+---
+kind: Command
+version: v1
+definition:
+  name: GetUsers
+  outputType: "[User!]!"
+  arguments:
+    - name: email
+      type: Int32
+      description: Filter by user email address
+    - name: id
+      type: Int32
+      description: Filter by user ID
+  source:
+    dataConnectorName: myhttp
+    dataConnectorCommand:
+      function: getUsers
+  graphql:
+    rootFieldName: getUsers
+    rootFieldKind: Query
+  description: Get all available users
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetUsers
+  permissions:
+    - role: admin
+      allowExecution: true
+

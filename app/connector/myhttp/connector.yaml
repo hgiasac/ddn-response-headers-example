@@ -1,0 +1,14 @@
+kind: Connector
+version: v2
+definition:
+  name: myhttp
+  subgraph: app
+  source: hasura/http:v0.5.0
+  context: .
+  envMapping:
+    HASURA_SERVICE_TOKEN_SECRET:
+      fromEnv: APP_MYHTTP_HASURA_SERVICE_TOKEN_SECRET
+    OTEL_EXPORTER_OTLP_ENDPOINT:
+      fromEnv: APP_MYHTTP_OTEL_EXPORTER_OTLP_ENDPOINT
+    OTEL_SERVICE_NAME:
+      fromEnv: APP_MYHTTP_OTEL_SERVICE_NAME

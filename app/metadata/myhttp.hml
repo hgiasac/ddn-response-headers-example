@@ -1,0 +1,947 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: myhttp
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_MYHTTP_READ_URL
+      write:
+        valueFromEnv: APP_MYHTTP_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_MYHTTP_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        Boolean:
+          representation:
+            type: boolean
+          aggregate_functions: {}
+          comparison_operators: {}
+        Int32:
+          representation:
+            type: int32
+          aggregate_functions: {}
+          comparison_operators: {}
+        Int64:
+          representation:
+            type: int64
+          aggregate_functions: {}
+          comparison_operators: {}
+        JSON:
+          representation:
+            type: json
+          aggregate_functions: {}
+          comparison_operators: {}
+        String:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators: {}
+        URI:
+          representation:
+            type: string
+          aggregate_functions: {}
+          comparison_operators: {}
+      object_types:
+        Album:
+          fields:
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            userId:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+        Comment:
+          fields:
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            postId:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+        CreatePostHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Post
+        DeletePostByIdHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+        GetAlbumsHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Album
+        GetAlbumsIdHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Album
+        GetAlbumsIdPhotosHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Photo
+        GetCommentHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Comment
+        GetCommentsHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Comment
+        GetPhotoHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Photo
+        GetPhotosHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Photo
+        GetPostByIdHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Post
+        GetPostsHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Post
+        GetPostsIdCommentsHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Comment
+        GetTodoHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Todo
+        GetTodosHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Todo
+        GetUserHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: User
+        GetUsersHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: User
+        PatchPostByIdHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Post
+        Photo:
+          fields:
+            albumId:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            thumbnailUrl:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: URI
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: URI
+        Post:
+          fields:
+            body:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            userId:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+        Todo:
+          fields:
+            completed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Boolean
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            title:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            userId:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+        UpdatePostByIdHeadersResponse:
+          fields:
+            headers:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            response:
+              type:
+                type: named
+                name: Post
+        User:
+          fields:
+            address:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: UserAddress
+            company:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: UserCompany
+            email:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int64
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            phone:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            username:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            website:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        UserAddress:
+          fields:
+            city:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            geo:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: UserAddressGeo
+            street:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            suite:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            zipcode:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        UserAddressGeo:
+          fields:
+            lat:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            lng:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        UserCompany:
+          fields:
+            bs:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            catchPhrase:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+      collections: []
+      functions:
+        - name: getAlbums
+          description: Get all available albums
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by album ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            userId:
+              description: Filter by user ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetAlbumsHeadersResponse
+        - name: getAlbumsId
+          description: Get specific album
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the album to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetAlbumsIdHeadersResponse
+        - name: getAlbumsIdPhotos
+          description: Get photos for a specific album
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: post id
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetAlbumsIdPhotosHeadersResponse
+        - name: getComment
+          description: Get specific comment
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the comment to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetCommentHeadersResponse
+        - name: getComments
+          description: Get all available comments
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by comment ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            postId:
+              description: Filter by post ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetCommentsHeadersResponse
+        - name: getPhoto
+          description: Get specific photo
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the photo to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetPhotoHeadersResponse
+        - name: getPhotos
+          description: Get all available photos
+          arguments:
+            albumId:
+              description: Filter by album ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by photo ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetPhotosHeadersResponse
+        - name: getPostById
+          description: Get specific post
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the post to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetPostByIdHeadersResponse
+        - name: getPosts
+          description: Get all available posts
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by post ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            userId:
+              description: Filter by user ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetPostsHeadersResponse
+        - name: getPostsIdComments
+          description: Get comments for a specific post
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: post id
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetPostsIdCommentsHeadersResponse
+        - name: getTodo
+          description: Get specific todo
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the todo to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetTodoHeadersResponse
+        - name: getTodos
+          description: Get all available todos
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by todo ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            userId:
+              description: Filter by user ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetTodosHeadersResponse
+        - name: getUser
+          description: Get specific user
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the user to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: GetUserHeadersResponse
+        - name: getUsers
+          description: Get all available users
+          arguments:
+            email:
+              description: Filter by user email address
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: Filter by user ID
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int32
+          result_type:
+            type: named
+            name: GetUsersHeadersResponse
+      procedures:
+        - name: createPost
+          description: Create a post
+          arguments:
+            body:
+              description: Post object that needs to be added
+              type:
+                type: named
+                name: Post
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+          result_type:
+            type: named
+            name: CreatePostHeadersResponse
+        - name: deletePostById
+          description: Delete specific post
+          arguments:
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the post to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: DeletePostByIdHeadersResponse
+        - name: patchPostById
+          description: patch specific post
+          arguments:
+            body:
+              description: Post object that needs to be updated
+              type:
+                type: named
+                name: Post
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the post to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: PatchPostByIdHeadersResponse
+        - name: updatePostById
+          description: Update specific post
+          arguments:
+            body:
+              description: Post object that needs to be updated
+              type:
+                type: named
+                name: Post
+            headers:
+              description: Headers forwarded from the Hasura engine
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: JSON
+            id:
+              description: The ID of the post to retrieve
+              type:
+                type: named
+                name: Int32
+          result_type:
+            type: named
+            name: UpdatePostByIdHeadersResponse
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          variables: {}
+          explain: {}
+          nested_fields: {}
+          exists: {}
+        mutation:
+          explain: {}
+  argumentPresets:
+    - argument: headers
+      value:
+        httpHeaders:
+          forward:
+            - Authorization
+          additional: {}
+  responseHeaders:
+    headersField: headers
+    resultField: response
+    forwardHeaders:
+      - X-Test-Header

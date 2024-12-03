@@ -1,0 +1,66 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Comment
+  fields:
+    - name: body
+      type: String
+    - name: email
+      type: String
+    - name: id
+      type: Int64
+    - name: name
+      type: String
+    - name: postId
+      type: Int64
+  graphql:
+    typeName: Comment
+    inputTypeName: CommentInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: myhttp
+      dataConnectorObjectType: Comment
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Comment
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - body
+          - email
+          - id
+          - name
+          - postId
+
+---
+kind: Command
+version: v1
+definition:
+  name: GetComment
+  outputType: Comment!
+  arguments:
+    - name: id
+      type: Int32!
+      description: The ID of the comment to retrieve
+  source:
+    dataConnectorName: myhttp
+    dataConnectorCommand:
+      function: getComment
+  graphql:
+    rootFieldName: getComment
+    rootFieldKind: Query
+  description: Get specific comment
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetComment
+  permissions:
+    - role: admin
+      allowExecution: true
+

@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/hasura/ndc-http/refs/heads/main/ndc-http-schema/jsonschema/configuration.schema.json
+output: schema.output.json
+strict: true
+forwardHeaders:
+  enabled: true
+  argumentField: headers
+  responseHeaders:
+    headersField: headers
+    resultField: response
+    forwardHeaders:
+      - X-Test-Header
+concurrency:
+  query: 1
+  mutation: 1
+  http: 5
+# You can find or request pre-built configuration recipes of popular API services here:
+# https://github.com/hasura/ndc-http-recipes/tree/main/recipes
+files:
+  - file: https://raw.githubusercontent.com/hasura/ndc-http/main/connector/testdata/jsonplaceholder/swagger.json
+    spec: oas2
+    timeout:
+      value: 30
+    retry:
+      times:
+        value: 0
+      delay:
+        value: 1000
+      httpStatus: [429, 500, 502, 503]

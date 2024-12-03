@@ -1,0 +1,28 @@
+---
+kind: Command
+version: v1
+definition:
+  name: GetAlbumsId
+  outputType: Album!
+  arguments:
+    - name: id
+      type: Int32!
+      description: The ID of the album to retrieve
+  source:
+    dataConnectorName: myhttp
+    dataConnectorCommand:
+      function: getAlbumsId
+  graphql:
+    rootFieldName: getAlbumsId
+    rootFieldKind: Query
+  description: Get specific album
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetAlbumsId
+  permissions:
+    - role: admin
+      allowExecution: true
+

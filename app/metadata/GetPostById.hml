@@ -1,0 +1,63 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Post
+  fields:
+    - name: body
+      type: String
+    - name: id
+      type: Int64
+    - name: title
+      type: String
+    - name: userId
+      type: Int64
+  graphql:
+    typeName: Post
+    inputTypeName: PostInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: myhttp
+      dataConnectorObjectType: Post
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Post
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - body
+          - id
+          - title
+          - userId
+
+---
+kind: Command
+version: v1
+definition:
+  name: GetPostById
+  outputType: Post!
+  arguments:
+    - name: id
+      type: Int32!
+      description: The ID of the post to retrieve
+  source:
+    dataConnectorName: myhttp
+    dataConnectorCommand:
+      function: getPostById
+  graphql:
+    rootFieldName: getPostById
+    rootFieldKind: Query
+  description: Get specific post
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: GetPostById
+  permissions:
+    - role: admin
+      allowExecution: true
+
